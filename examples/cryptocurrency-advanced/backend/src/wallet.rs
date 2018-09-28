@@ -23,7 +23,7 @@ encoding_struct! {
         pub_key:            &PublicKey,
         /// Name of the wallet.
         name:               &str,
-        /// USP.
+        /// USP. 
         usp:                &str,
         /// Current balance of the wallet.
         balance:            u64,
