@@ -107,12 +107,12 @@ impl<'a> Schema<&'a mut Fork> {
     }
 
     /// Create new wallet and append first record to its history.
-    pub fn create_wallet(&mut self, key: &PublicKey, name: &str, transaction: &Hash) {
+    pub fn create_wallet(&mut self, key: &PublicKey, name: &str, usp: &str, transaction: &Hash) {
         let wallet = {
             let mut history = self.wallet_history_mut(key);
             history.push(*transaction);
             let history_hash = history.merkle_root();
-            Wallet::new(key, name, INITIAL_BALANCE, history.len(), &history_hash)
+            Wallet::new(key, name, usp, INITIAL_BALANCE, history.len(), &history_hash)
         };
         self.wallets_mut().put(key, wallet);
     }

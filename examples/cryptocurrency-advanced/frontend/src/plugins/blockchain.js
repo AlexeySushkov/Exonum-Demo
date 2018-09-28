@@ -9,6 +9,7 @@ const SERVICE_ID = 128
 const TX_TRANSFER_ID = 0
 const TX_ISSUE_ID = 1
 const TX_WALLET_ID = 2
+const TX_MY_SERVICE_ID = 3
 const TableKey = Exonum.newType({
   fields: [
     { name: 'service_id', type: Exonum.Uint16 },
