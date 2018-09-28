@@ -99,6 +99,8 @@ transactions! {
             pub_key: &PublicKey,
             /// Name of the new wallet.
             name:    &str,
+            /// usp.
+            usp: &usp,
         }
     }
 }
