@@ -20,6 +20,7 @@ use exonum::{
 
 use wallet::Wallet;
 use INITIAL_BALANCE;
+use USP_NAME;
 
 /// Database schema for the cryptocurrency.
 #[derive(Debug)]
@@ -112,7 +113,7 @@ impl<'a> Schema<&'a mut Fork> {
             let mut history = self.wallet_history_mut(key);
             history.push(*transaction);
             let history_hash = history.merkle_root();
-            Wallet::new(key, name, usp, INITIAL_BALANCE, history.len(), &history_hash)
+            Wallet::new(key, name, USP_NAME, INITIAL_BALANCE, history.len(), &history_hash)
         };
         self.wallets_mut().put(key, wallet);
     }

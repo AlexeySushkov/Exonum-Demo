@@ -45,6 +45,7 @@ const CRYPTOCURRENCY_SERVICE_ID: u16 = 128;
 const SERVICE_NAME: &str = "cryptocurrency";
 /// Initial balance of the wallet.
 const INITIAL_BALANCE: u64 = 100;
+const USP_NAME: &str = "usp_1";
 
 /// Exonum `Service` implementation.
 #[derive(Default, Debug)]
