@@ -33,8 +33,6 @@ pub trait Command {
     fn args(&self) -> Vec<Argument>;
     /// Command name.
     fn name(&self) -> CommandName;
-    /// Command usp.
-    fn usp(&self) -> CommandName;
     /// Short information about the command.
     fn about(&self) -> &str;
     /// Executes the command processing code.
@@ -79,10 +77,6 @@ impl CollectedCommand {
 
     pub fn name(&self) -> CommandName {
         self.command.name()
-    }
-
-    pub fn usp(&self) -> CommandName {
-        self.command.usp()
     }
 
     pub fn about(&self) -> &str {
