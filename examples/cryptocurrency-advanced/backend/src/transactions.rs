@@ -163,7 +163,8 @@ impl Transaction for CreateWallet {
 
         if schema.wallet(pub_key).is_none() {
             let name = self.name();
-            schema.create_wallet(pub_key, name, &hash);
+            let usp = self.usp();
+            schema.create_wallet(pub_key, name, usp, &hash);
             Ok(())
         } else {
             Err(Error::WalletAlreadyExists)?

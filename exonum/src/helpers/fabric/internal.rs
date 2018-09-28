@@ -78,6 +78,10 @@ impl CollectedCommand {
     pub fn name(&self) -> CommandName {
         self.command.name()
     }
+    
+    pub fn usp(&self) -> CommandName {
+        self.command.usp()
+    }
 
     pub fn about(&self) -> &str {
         self.command.about()

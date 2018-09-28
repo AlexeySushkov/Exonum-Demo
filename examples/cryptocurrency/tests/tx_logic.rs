@@ -48,6 +48,7 @@ fn test_create_wallet() {
     let wallet = get_wallet(&testkit, tx.pub_key());
     assert_eq!(wallet.pub_key(), tx.pub_key());
     assert_eq!(wallet.name(), ALICE_NAME);
+    assert_eq!(wallet.usp(), 'USP1');    
     assert_eq!(wallet.balance(), 100);
 }
 

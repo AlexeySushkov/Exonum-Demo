@@ -48,12 +48,12 @@ impl Wallet {
 
     pub fn increase(self, amount: u64, height: Height) -> Self {
         let balance = self.actual_balance(height) + amount;
-        Self::new(self.pub_key(), self.name(), balance, height.0)
+        Self::new(self.pub_key(), self.name(), self.usp(), balance, height.0)
     }
 
     pub fn decrease(self, amount: u64, height: Height) -> Self {
         let balance = self.actual_balance(height) - amount;
-        Self::new(self.pub_key(), self.name(), balance, height.0)
+        Self::new(self.pub_key(), self.name(), self.usp(), balance, height.0)
     }
 }
 
