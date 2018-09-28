@@ -64,14 +64,14 @@ pub mod schema {
         /// Returns a copy of this wallet with the balance increased by the specified amount.
         pub fn increase(self, amount: u64) -> Self {
             let balance = self.balance() + amount;
-            Self::new(self.pub_key(), self.name(), balance)
+            Self::new(self.pub_key(), self.name(), self.usp(), balance)
         }
 
         /// Returns a copy of this wallet with the balance decreased by the specified amount.
         pub fn decrease(self, amount: u64) -> Self {
             debug_assert!(self.balance() >= amount);
             let balance = self.balance() - amount;
-            Self::new(self.pub_key(), self.name(), balance)
+            Self::new(self.pub_key(), self.name(), self.usp(), balance)
         }
     }
 
