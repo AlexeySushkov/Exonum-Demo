@@ -100,7 +100,7 @@ transactions! {
             /// Name of the new wallet.
             name:    &str,
             /// usp.
-            usp: &usp,
+            usp: &str,
         }
     }
 }
