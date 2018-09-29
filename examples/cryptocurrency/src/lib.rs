@@ -54,8 +54,6 @@ pub mod schema {
             name: &str,
             /// Current balance.
             balance: u64,
-            /// USP.
-            usp: &str,
         }
     }
 
@@ -64,14 +62,14 @@ pub mod schema {
         /// Returns a copy of this wallet with the balance increased by the specified amount.
         pub fn increase(self, amount: u64) -> Self {
             let balance = self.balance() + amount;
-            Self::new(self.pub_key(), self.name(), self.usp(), balance)
+            Self::new(self.pub_key(), self.name(), balance)
         }
 
         /// Returns a copy of this wallet with the balance decreased by the specified amount.
         pub fn decrease(self, amount: u64) -> Self {
             debug_assert!(self.balance() >= amount);
             let balance = self.balance() - amount;
-            Self::new(self.pub_key(), self.name(), self.usp(), balance)
+            Self::new(self.pub_key(), self.name(), balance)
         }
     }
 
@@ -133,8 +131,6 @@ pub mod transactions {
                 pub_key: &PublicKey,
                 /// UTF-8 string with the owner's name.
                 name: &str,
-                /// USP.
-                usp: &str,
             }
 
             /// Transaction type for transferring tokens between two wallets.
@@ -228,7 +224,7 @@ pub mod contracts {
         fn execute(&self, view: &mut Fork) -> ExecutionResult {
             let mut schema = CurrencySchema::new(view);
             if schema.wallet(self.pub_key()).is_none() {
-                let wallet = Wallet::new(self.pub_key(), self.name(), self.usp(), INIT_BALANCE);
+                let wallet = Wallet::new(self.pub_key(), self.name(), INIT_BALANCE);
                 println!("Create the wallet: {:?}", wallet);
                 schema.wallets_mut().put(self.pub_key(), wallet);
                 Ok(())

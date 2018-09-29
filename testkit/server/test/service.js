@@ -35,8 +35,7 @@ const TxCreateWallet = exports.TxCreateWallet = exonum.newMessage({
 
   fields: [
     { name: 'pub_key', type: exonum.PublicKey },
-    { name: 'name', type: exonum.String },
-    { name: 'usp', type: exonum.String }
+    { name: 'name', type: exonum.String }
   ]
 })
 

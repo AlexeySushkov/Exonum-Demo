@@ -24,7 +24,7 @@ encoding_struct! {
         /// Name of the wallet.
         name:               &str,
         /// USP. 
-        usp:                &str,
+        // usp:                &str,
         /// Current balance of the wallet.
         balance:            u64,
         /// Length of the transactions history.
@@ -40,7 +40,7 @@ impl Wallet {
         Self::new(
             self.pub_key(),
             self.name(),
-            self.usp(),
+            // self.usp(),
             balance,
             self.history_len() + 1,
             history_hash,

@@ -35,7 +35,6 @@ encoding_struct! {
         pub_key: &PublicKey,
         name: &str,
         balance: u64,
-        usp: &str,
         last_update_height: u64,
     }
 }
@@ -48,12 +47,12 @@ impl Wallet {
 
     pub fn increase(self, amount: u64, height: Height) -> Self {
         let balance = self.actual_balance(height) + amount;
-        Self::new(self.pub_key(), self.name(), self.usp(), balance, height.0)
+        Self::new(self.pub_key(), self.name(), balance, height.0)
     }
 
     pub fn decrease(self, amount: u64, height: Height) -> Self {
         let balance = self.actual_balance(height) - amount;
-        Self::new(self.pub_key(), self.name(), self.usp(), balance, height.0)
+        Self::new(self.pub_key(), self.name(), balance, height.0)
     }
 }
 
@@ -94,7 +93,6 @@ transactions! {
         struct TxCreateWallet {
             pub_key: &PublicKey,
             name: &str,
-            usp: &str,
         }
 
         /// Transfer coins between the wallets.
@@ -121,7 +119,7 @@ impl Transaction for TxCreateWallet {
         let height = CoreSchema::new(&view).height();
         let mut schema = CurrencySchema { view };
         if schema.wallet(self.pub_key()).is_none() {
-            let wallet = Wallet::new(self.pub_key(), self.name(), self.usp(), INIT_BALANCE, height.0);
+            let wallet = Wallet::new(self.pub_key(), self.name(), INIT_BALANCE, height.0);
             schema.wallets_mut().put(self.pub_key(), wallet);
         }
         Ok(())
